@@ -8,26 +8,16 @@ using UnityEngine;
 // This script will need a singleton pattern since it will be used across things.
 public class GamePlay : MonoBehaviour
 {
-    [SerializeField] GameObject theCamera;
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<Timer>().BeginTime();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void MoveCamera(string direction)
-    {
-        // Move Camera in the Room
-    }
-
-    public void MoveRoom(string room)
-    {
-        // This will move us to the indicated room
     }
 
     public void EndInspection()

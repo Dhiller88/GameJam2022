@@ -11,7 +11,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    float timeLeft = 60f;
+    [SerializeField] float timeLeft = 120f;
     [SerializeField] TextMeshProUGUI timeDisplay;
     bool started = false;
 
@@ -39,10 +39,22 @@ public class Timer : MonoBehaviour
     {
         timeLeft -= Time.deltaTime;
         float temp = Mathf.Floor(timeLeft);
-        timeDisplay.text = temp.ToString();
+        int minute = ((int)timeLeft)/60;
+        int second = ((int)timeLeft)%60;
+        string secondDisplay = "";
+        if (second < 10)
+        {
+            secondDisplay = "0" + second.ToString();
+        }
+        else
+        {
+            secondDisplay = second.ToString();
+        }
+        string displayThis = minute.ToString() + ":" + secondDisplay; 
+        timeDisplay.text = displayThis;
         if (timeLeft < 0)
         {
-            // Need a method to automatically move us to the next area.
+            FindObjectOfType<GamePlay>().EndInspection();
             Destroy(gameObject);
         }
     }
