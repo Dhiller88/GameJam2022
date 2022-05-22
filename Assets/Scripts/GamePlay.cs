@@ -8,6 +8,9 @@ using UnityEngine;
 // This script will need a singleton pattern since it will be used across things.
 public class GamePlay : MonoBehaviour
 {
+    private List<string> Weapons;
+    private List<string> Motives;
+    private bool SoundPlaying = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +38,25 @@ public class GamePlay : MonoBehaviour
         {
             // Take us to the fail ending
         }
+    }
+
+    public void AddMotive(string Motive)
+    {
+        Motives.Add(Motive);
+    }
+
+    public void AddWeapon(string Weapon)
+    {
+        Weapons.Add(Weapon);
+    }
+
+    public bool GetSoundPlaying()
+    {
+        return SoundPlaying;
+    }
+
+    public void ChangeSoundPlayingStatus()
+    {
+        SoundPlaying = (!SoundPlaying);
     }
 }
