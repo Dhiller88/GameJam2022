@@ -11,6 +11,9 @@ public class GamePlay : MonoBehaviour
     private List<string> Weapons;
     private List<string> Motives;
     private bool SoundPlaying = false;
+    private bool ZoomedIn = false;
+    [SerializeField] GameObject RoomLocations;
+    [SerializeField] GameObject GoBackButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,5 +61,15 @@ public class GamePlay : MonoBehaviour
     public void ChangeSoundPlayingStatus()
     {
         SoundPlaying = (!SoundPlaying);
+    }
+
+    public void SwitchZoom()
+    {
+        ZoomedIn = (!ZoomedIn);
+    }
+
+    public bool GetZoomStatus()
+    {
+        return ZoomedIn;
     }
 }
