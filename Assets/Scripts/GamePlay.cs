@@ -8,8 +8,8 @@ using UnityEngine;
 // This script will need a singleton pattern since it will be used across things.
 public class GamePlay : MonoBehaviour
 {
-    private List<string> Weapons;
-    private List<string> Motives;
+    private List<string> Weapons = new List<string>{};
+    private List<string> Motives = new List<string>{};
     private bool SoundPlaying = false;
     private bool ZoomedIn = false;
     [SerializeField] GameObject RoomLocations;
@@ -45,12 +45,20 @@ public class GamePlay : MonoBehaviour
 
     public void AddMotive(string Motive)
     {
-        Motives.Add(Motive);
+        if (Motive != "")
+        {
+            Debug.Log(Motive + " was added to the list.");
+            Motives.Add(Motive);
+        }
     }
 
     public void AddWeapon(string Weapon)
     {
-        Weapons.Add(Weapon);
+        if (Weapon != "")
+        {
+            Debug.Log(Weapon + " was added to the list.");
+            Weapons.Add(Weapon);
+        }
     }
 
     public bool GetSoundPlaying()

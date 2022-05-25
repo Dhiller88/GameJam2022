@@ -5,17 +5,18 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     int currentxPosition = 0;
-    int currentyPosition = 0;
+    int currentyPosition = 30;
     [SerializeField] GameObject roomPanel;
     [SerializeField] GameObject returnButton;
-
-    int totalImages;
+    // HEY LISTEN TO ME! ON THE FINAL GAME, THIS TOTALIMAGES VARIABLE NEEDS TO BE ACCURATE!!!
+    int totalImages = 3;
     Vector3 rememberMe;
     // Start is called before the first frame update
     void Start()
     {
         roomPanel.SetActive(true);
         returnButton.SetActive(false);
+        transform.position = new Vector3(currentxPosition, currentyPosition,-10);
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class CameraMovement : MonoBehaviour
     {
         currentyPosition = NumberOfRoomsThenRoomYValue%10;
         totalImages = (NumberOfRoomsThenRoomYValue - currentyPosition) / 10;
+        currentyPosition = currentyPosition * 30;
         transform.position = new Vector3(0, currentyPosition, -10);
     }
 
@@ -53,6 +55,7 @@ public class CameraMovement : MonoBehaviour
     public void ReturnCameraPosition()
     {
         transform.position = rememberMe;
+        FindObjectOfType<GamePlay>().SwitchZoom();
         returnButton.SetActive(false);
         roomPanel.SetActive(true);
     }

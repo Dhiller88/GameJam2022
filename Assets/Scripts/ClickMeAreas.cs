@@ -5,10 +5,10 @@ using UnityEngine;
 public class ClickMeAreas : MonoBehaviour
 {
     private bool inspected = false;
-    [SerializeField] string MotiveStatement;
-    [SerializeField] string WeaponStatement;
-    [SerializeField] string ScriptLines;
-    [SerializeField] AudioClip Soundbyte;
+    [SerializeField] string MotiveStatement = "";
+    [SerializeField] string WeaponStatement = "";
+    [SerializeField] string ScriptLines = "";
+    //[SerializeField] AudioClip Soundbyte;
     [SerializeField] GamePlay gameplayScriptObject;
     [SerializeField] int xPos;
     [SerializeField] int yPos;
@@ -25,27 +25,35 @@ public class ClickMeAreas : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        if (gameplayScriptObject.GetSoundPlaying())
+        if (!gameplayScriptObject.GetSoundPlaying())
         {
-            if (!gameplayScriptObject.GetZoomStatus())
+            if (gameplayScriptObject.GetZoomStatus())
             {
+                Debug.Log("Oops");
                 gameplayScriptObject.ChangeSoundPlayingStatus();
-                gameplayScriptObject.AddMotive(MotiveStatement);
-                gameplayScriptObject.AddWeapon(WeaponStatement);
+                if (!inspected)
+                {
+                    gameplayScriptObject.AddMotive(MotiveStatement);
+                    gameplayScriptObject.AddWeapon(WeaponStatement);
+                }
                 StartCoroutine(PlaySound());
+                inspected = true;
             }
             else
             {
+                Debug.Log("In theory, this worked.");
                 CameraMovement theCamera = FindObjectOfType<CameraMovement>();
                 theCamera.CameraMoveToLocation(xPos, yPos);
+                gameplayScriptObject.SwitchZoom();
             }
-            gameplayScriptObject.SwitchZoom();
         }
     }
 
     IEnumerator PlaySound()
     {
+        Debug.Log("Got to the CoRoutine");
         AudioSource source = GetComponent<AudioSource>();
+        //source.clip = Soundbyte;
         source.Play();
         yield return new WaitWhile (()=> source.isPlaying);  
         gameplayScriptObject.ChangeSoundPlayingStatus();  
