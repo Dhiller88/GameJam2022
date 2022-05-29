@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // The purpose of this script is to check the answer against the intended answer.
 // If the answer is correct, move it to the correct ending screen.
@@ -8,6 +10,11 @@ using UnityEngine;
 
 public class Conclusion : MonoBehaviour
 {
+
+    [SerializeField] AudioClip SuccessSound;
+    [SerializeField] AudioClip FailureSound;
+    [SerializeField] Dropdown MurdererDropdown;
+    [SerializeField] Dropdown WeaponDropdown;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,5 +48,14 @@ public class Conclusion : MonoBehaviour
         {
             Debug.LogError("Error in the Ending Play Method");
         }
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
     }
 }

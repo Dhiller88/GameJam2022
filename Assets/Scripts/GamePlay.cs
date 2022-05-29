@@ -80,4 +80,9 @@ public class GamePlay : MonoBehaviour
     {
         return ZoomedIn;
     }
+
+    public List<string> GetWeaponList()
+    {
+        return Weapons;
+    }
 }
