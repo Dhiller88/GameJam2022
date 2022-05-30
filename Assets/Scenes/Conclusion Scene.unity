@@ -700,7 +700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &570391913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,10 +817,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261a9abbea226834f9526054ff8ced22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SuccessSound: {fileID: 0}
-  FailureSound: {fileID: 0}
-  MurdererDropdown: {fileID: 0}
-  WeaponDropdown: {fileID: 0}
+  ConclusionCanvas: {fileID: 570391912}
+  EndingCanvas: {fileID: 1074879224}
+  SuccessSound: {fileID: 8300000, guid: 327bbd7b2b237994089e03f294c49275, type: 3}
+  FailureSound: {fileID: 8300000, guid: 26dc4478b929d2d4395600b98214f0e1, type: 3}
+  weaponDropdown: {fileID: 1747875877}
+  murdererDropdown: {fileID: 737457878}
+  volume: 0.841
 --- !u!4 &575859665
 Transform:
   m_ObjectHideFlags: 0
@@ -1066,7 +1069,7 @@ GameObject:
   - component: {fileID: 644516926}
   - component: {fileID: 644516925}
   m_Layer: 5
-  m_Name: Label
+  m_Name: MurdererLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2357,7 +2360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1074879225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2525,7 +2528,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1113194137}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 575859664}
+        m_TargetAssemblyTypeName: Conclusion, Assembly-CSharp
+        m_MethodName: EndingPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1113194137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3289,7 +3304,7 @@ GameObject:
   - component: {fileID: 1468497503}
   - component: {fileID: 1468497502}
   m_Layer: 5
-  m_Name: Label
+  m_Name: WeaponLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3729,9 +3744,23 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Almonds
       m_Image: {fileID: 0}
+    - m_Text: Hanging
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1747875878
 MonoBehaviour:

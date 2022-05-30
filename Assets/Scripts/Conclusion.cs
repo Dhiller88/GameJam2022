@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 // The purpose of this script is to check the answer against the intended answer.
 // If the answer is correct, move it to the correct ending screen.
@@ -10,15 +11,20 @@ using UnityEngine.SceneManagement;
 
 public class Conclusion : MonoBehaviour
 {
-
+    [SerializeField] GameObject ConclusionCanvas;
+    [SerializeField] GameObject EndingCanvas;
     [SerializeField] AudioClip SuccessSound;
     [SerializeField] AudioClip FailureSound;
-    [SerializeField] Dropdown MurdererDropdown;
-    [SerializeField] Dropdown WeaponDropdown;
+    [SerializeField] TMP_Dropdown weaponDropdown;
+    [SerializeField] TMP_Dropdown murdererDropdown;
+    [SerializeField] [Range (0,1f)] float volume;
+
+    private string selectedMurderer;
+    private string selectedWeapon;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,22 +33,54 @@ public class Conclusion : MonoBehaviour
         
     }
 
-    private bool CheckAnswer(string suspect, string weapon, string motive)
+    private void ReturnWeaponSelection()
     {
-        bool res = true;
-        return true;
+        selectedWeapon = weaponDropdown.options[weaponDropdown.value].text;
+    }
+    private void ReturnMurdererSelection()
+    {
+        selectedMurderer = murdererDropdown.options[murdererDropdown.value].text;
     }
 
-    public void EndingPlay(string suspect, string weapon, string motive)
+
+
+    public bool CheckAnswer()
     {
-        bool res = CheckAnswer(suspect, weapon, motive);
+        ReturnWeaponSelection();
+        ReturnMurdererSelection();
+        if(selectedMurderer == "David" && selectedWeapon == "Almonds")
+        {
+        bool res = true;
+        return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void EndingPlay()
+    {
+        bool res = CheckAnswer();
         if (res)
         {
             // Send it to the good ending
+            ConclusionCanvas.gameObject.SetActive(false);
+            EndingCanvas.gameObject.SetActive(true);
+            AudioSource.PlayClipAtPoint(SuccessSound,Camera.main.transform.position,volume);
+            Debug.Log(selectedMurderer);
+            Debug.Log(selectedWeapon);
+            Debug.Log("You have chosen correctly. Yaaaaaay....");
         }
         else if (!res)
         {
             // Send it to the bad ending
+            ConclusionCanvas.gameObject.SetActive(false);
+            EndingCanvas.gameObject.SetActive(true);
+            AudioSource.PlayClipAtPoint(FailureSound,Camera.main.transform.position,volume);
+            Debug.Log("It was so obvious. How did you screw it up?");
+            Debug.Log(selectedMurderer);
+            Debug.Log(selectedWeapon);
         }
         else
         {
