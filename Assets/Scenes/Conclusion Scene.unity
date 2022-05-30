@@ -819,8 +819,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConclusionCanvas: {fileID: 570391912}
   EndingCanvas: {fileID: 1074879224}
-  SuccessSound: {fileID: 8300000, guid: 327bbd7b2b237994089e03f294c49275, type: 3}
-  FailureSound: {fileID: 8300000, guid: 26dc4478b929d2d4395600b98214f0e1, type: 3}
+  SuccessSound: {fileID: 8300000, guid: 9dd3610b68b24664a8562ab4bb4af963, type: 3}
+  FailureSound: {fileID: 8300000, guid: 30868449f76469341ab003ef1b8fbdcf, type: 3}
   weaponDropdown: {fileID: 1747875877}
   murdererDropdown: {fileID: 737457878}
   volume: 0.841

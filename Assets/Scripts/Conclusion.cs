@@ -68,9 +68,6 @@ public class Conclusion : MonoBehaviour
             ConclusionCanvas.gameObject.SetActive(false);
             EndingCanvas.gameObject.SetActive(true);
             AudioSource.PlayClipAtPoint(SuccessSound,Camera.main.transform.position,volume);
-            Debug.Log(selectedMurderer);
-            Debug.Log(selectedWeapon);
-            Debug.Log("You have chosen correctly. Yaaaaaay....");
         }
         else if (!res)
         {
@@ -78,9 +75,6 @@ public class Conclusion : MonoBehaviour
             ConclusionCanvas.gameObject.SetActive(false);
             EndingCanvas.gameObject.SetActive(true);
             AudioSource.PlayClipAtPoint(FailureSound,Camera.main.transform.position,volume);
-            Debug.Log("It was so obvious. How did you screw it up?");
-            Debug.Log(selectedMurderer);
-            Debug.Log(selectedWeapon);
         }
         else
         {
