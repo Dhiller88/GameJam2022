@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 // The purpose of this script is to be able to move all things along and keep track of game vars
@@ -28,7 +29,7 @@ public class GamePlay : MonoBehaviour
 
     public void EndInspection()
     {
-        // This will take us to the conclusion screen
+        SceneManager.LoadScene(2);
     }
 
     public void Ending(bool success)
@@ -84,5 +85,10 @@ public class GamePlay : MonoBehaviour
     public List<string> GetWeaponList()
     {
         return Weapons;
+    }
+
+    public void LoadEnding()
+    {
+        SceneManager.LoadScene(2);
     }
 }
