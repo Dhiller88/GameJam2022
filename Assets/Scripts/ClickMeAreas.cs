@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickMeAreas : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class ClickMeAreas : MonoBehaviour
 
 
     private void OnMouseDown() {
+        if(EventSystem.current.IsPointerOverGameObject())
+            return;
         if (!gameplayScriptObject.GetSoundPlaying())
         {
             if (gameplayScriptObject.GetZoomStatus())

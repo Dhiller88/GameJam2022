@@ -8,6 +8,8 @@ public class CameraMovement : MonoBehaviour
     int currentyPosition = 30;
     [SerializeField] GameObject roomPanel;
     [SerializeField] GameObject returnButton;
+    [SerializeField] GameObject leftButton;
+    [SerializeField] GameObject rightButton;
     // HEY LISTEN TO ME! ON THE FINAL GAME, THIS TOTALIMAGES VARIABLE NEEDS TO BE ACCURATE!!!
     int totalImages = 3;
     Vector3 rememberMe;
@@ -50,6 +52,8 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(x,y,-10);
         returnButton.SetActive(true);
         roomPanel.SetActive(false);
+        leftButton.SetActive(false);
+        rightButton.SetActive(false);
     }
 
     public void ReturnCameraPosition()
@@ -58,5 +62,7 @@ public class CameraMovement : MonoBehaviour
         FindObjectOfType<GamePlay>().SwitchZoom();
         returnButton.SetActive(false);
         roomPanel.SetActive(true);
+        leftButton.SetActive(true);
+        rightButton.SetActive(true);
     }
 }
