@@ -5,6 +5,9 @@ using UnityEngine;
 public class ClickMeAreas : MonoBehaviour
 {
     private bool inspected = false;
+    [SerializeField] public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
     [SerializeField] string MotiveStatement = "";
     [SerializeField] string WeaponStatement = "";
     [SerializeField] string ScriptLines = "";
@@ -24,12 +27,22 @@ public class ClickMeAreas : MonoBehaviour
         
     }
 
+    void OnMouseEnter()
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+    }
+
+    void OnMouseExit()
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
+
+
     private void OnMouseDown() {
         if (!gameplayScriptObject.GetSoundPlaying())
         {
             if (gameplayScriptObject.GetZoomStatus())
             {
-                Debug.Log("Oops");
                 gameplayScriptObject.ChangeSoundPlayingStatus();
                 if (!inspected)
                 {
@@ -41,7 +54,6 @@ public class ClickMeAreas : MonoBehaviour
             }
             else
             {
-                Debug.Log("In theory, this worked.");
                 CameraMovement theCamera = FindObjectOfType<CameraMovement>();
                 theCamera.CameraMoveToLocation(xPos, yPos);
                 gameplayScriptObject.SwitchZoom();
@@ -51,7 +63,6 @@ public class ClickMeAreas : MonoBehaviour
 
     IEnumerator PlaySound()
     {
-        Debug.Log("Got to the CoRoutine");
         AudioSource source = GetComponent<AudioSource>();
         //source.clip = Soundbyte;
         source.Play();
